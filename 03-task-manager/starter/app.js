@@ -2,6 +2,7 @@ const express = require('express');
 const tasks = require('./router/task');
 const connectDB = require('./db/db');
 require('dotenv').config();
+const notFound = require('./middleware/not-found');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api/v1/tasks', tasks);
 app.use('/api/v1/tasks/:id', tasks);
+app.use(notFound);
 
 // app.get('/api/v1/tasks') - get all items
 // app.post('/api/v1/tasks') - create new items
